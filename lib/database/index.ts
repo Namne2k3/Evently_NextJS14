@@ -24,6 +24,7 @@ export const connectToDatabase = async () => {
         bufferCommands: false
     })
 
+    // cập nhật lại cachec connection 
     cached.conn = await cached.promise
 
     return cached.conn;
