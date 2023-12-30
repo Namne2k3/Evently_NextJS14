@@ -50,10 +50,12 @@ export async function POST(req: Request) {
     }
 
     // Get the ID and type
-    // const { id } = evt.data;
+    const { id } = evt.data;
     const eventType = evt.type;
 
     if (eventType === 'user.created') {
+        console.log("Check created >>> ", eventType);
+
         const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
 
         const user = {
@@ -67,6 +69,7 @@ export async function POST(req: Request) {
 
         const newUser = await createUser(user);
 
+        // chưa hiểu khúc này để làm gì
         if (newUser) {
             await clerkClient.users.updateUserMetadata(id, {
                 publicMetadata: {
